@@ -1,0 +1,44 @@
+[
+    {
+        "optionId": 1,
+        "companyId": 50505,
+        "audienceCost": 237,
+        "cost": 50
+    },
+    {
+        "optionId": 2,
+        "companyId": 50505,
+        "audienceCost": 250,
+        "cost": 100
+    },
+    {
+        "optionId": 3,
+        "companyId": 50505,
+        "audienceCost": 346,
+        "cost": 200
+    },
+    {
+        "optionId": 4,
+        "companyId": 50505,
+        "audienceCost": 237,
+        "cost": 150
+    },
+    {
+        "optionId": 5,
+        "companyId": 50505,
+        "audienceCost": 251,
+        "cost": 300
+    },
+    {
+        "optionId": 6,
+        "companyId": 50505,
+        "audienceCost": 377,
+        "cost": 450
+    },
+    {
+        "optionId": 7,
+        "companyId": 50505,
+        "audienceCost": 665,
+        "cost": 640
+    }
+]
