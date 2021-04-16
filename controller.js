@@ -7,13 +7,30 @@ const advertDB = require("./model");
 var app = express();
 // require("./route")(app);
 // var app = require("./controller/app");
-var urlencodedParser = bodyParser.urlencoded( {extended: false} );
-var jsonParser = bodyParser.json();
+var urlencodedParser = express.urlencoded( {extended: false} );
+var jsonParser = express.json();
 app.use(jsonParser);
 app.use(urlencodedParser);
 
 app.options("*", cors());
 app.use(cors());
+
+app.get("/basic/data",(req,res) => {
+    // const companyId = 0; // req.query.companyId;
+    // const audienceCount = 0; // req.query.audienceCount;
+
+    const companyId = req.query.companyId;
+    const audienceCount = req.query.audienceCount;
+
+    advertDB.getOptions(companyId,audienceCount,(err,result)=> {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.status(200).send(err);
+        }
+    });
+});
 
 app.post("/basic/insert",(req,res) => {
 
@@ -23,13 +40,15 @@ app.post("/basic/insert",(req,res) => {
          if (err) {
              if (err.code == "ER_DUP_ENTRY") {
                  res.status(400).send("Message: " + err.sqlMessage);
+                //  res.status(400).send("Message");
              }
              else {
-                 res.status(500).send("Message: " + err.sqlMessage);
+                 res.status(500).send("Message: " + err.message);
+                //  res.status(500).send("Message");
              }
          }
          else {
-             res.status(200).send("Affected Rows: " + result.affectedRows);
+             res.status(200).send("Affected Rows:" + result.affectedRows);
          }
      })
 });
