@@ -4,9 +4,10 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 var app = require("./controller");
+
 // const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });

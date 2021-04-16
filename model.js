@@ -35,7 +35,7 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
 
                 conn.query(queryStmt,[audienceCount],(err,result)=> {
                     if (err) {
-                        console.log("ERROR == cannot get options");
+                        console.log("ERROR -- cannot get options");
                         return callback(err,null);
                     }
                     else {
@@ -44,11 +44,11 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                 });
             }
             else if (companyId != 0 && audienceCount ==0) {
-                var queryStmt = "SELECT * FROM `advertisementOptions` WHERE companyId=?";
+                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=?";
 
                 conn.query(queryStmt,[companyId],(err,result)=> {
                     if (err) {
-                        console.log("ERROR == cannot get options");
+                        console.log("ERROR -- cannot get options");
                         return callback(err,null);
                     }
                     else {
@@ -57,11 +57,11 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                 });
             }
             else if (companyId == 0 && audienceCount == 0) {
-                var queryStmt = "SELECT * FROM `advertisementOptions`";
+                var queryStmt = "SELECT * FROM advertisementOptions";
 
                 conn.query(queryStmt,[],(err,result)=> {
                     if (err) {
-                        console.log("ERROR == cannot get options");
+                        console.log("ERROR -- cannot get options");
                         return callback(err,null);
                     }
                     else {
@@ -70,11 +70,11 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                 });
             }
             else if (companyId != 0 && audienceCount !=0) {
-                var queryStmt = "SELECT * FROM `advertisementOptions` WHERE companyId=? AND audienceCount=?";
+                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=? AND audienceCount=?";
 
                 conn.query(queryStmt,[companyId, audienceCount],(err,result)=> {
                     if (err) {
-                        console.log("ERROR == cannot get options");
+                        console.log("ERROR -- cannot get options");
                         return callback(err,null);
                     }
                     else {
@@ -109,7 +109,7 @@ advertDB.addOption = (data, callback) => {
                 }
             });
         }
-    })
+    });
 }
 
 module.exports = advertDB;
