@@ -21,16 +21,20 @@ function ObjToArray(obj) {
     });
 }
 
-advertDB.getOptions = function(companyId,audienceCount,callback) {
+advertDB.getOptions = function(companyId, audienceCount, currPage, pageLimit, callback) {
     var conn = db.getConnection();
+
+    var offsetNum = ((currPage - 1) * pageLimit);
+
+    console.log(currPage, pageLimit);
 
     conn.connect((err) => {
         if (err) {
             return callback(err,null);
         }
         else {
-            if (companyId == 0 && audienceCount !=0) {
-                var queryStmt = "SELECT * FROM `advertisementOptions` WHERE audienceCount=?";
+            if (companyId == 0 && audienceCount != 0) {
+                var queryStmt = "SELECT * FROM `advertisementOptions` WHERE audienceCount=? limit " + pageLimit + " offset " + offsetNum;
                 // $sql = "SELECT * FROM `advertisementoptions` WHERE audienceCount=?";
 
                 conn.query(queryStmt,[audienceCount],(err,result)=> {
@@ -39,12 +43,15 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                         return callback(err,null);
                     }
                     else {
-                        return callback(err,null);
+                        // return callback(err,null);
+                        return callback(null,result);
                     }
                 });
             }
-            else if (companyId != 0 && audienceCount ==0) {
-                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=?";
+            else if (companyId != 0 && audienceCount == 0) {
+                console.log(companyId, audienceCount, currPage, pageLimit)
+
+                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=? limit " + pageLimit + " offset " + offsetNum;
 
                 conn.query(queryStmt,[companyId],(err,result)=> {
                     if (err) {
@@ -52,12 +59,15 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                         return callback(err,null);
                     }
                     else {
-                        return callback(err,null);
+                        // return callback(err,null);
+                        return callback(null,result);
                     }
                 });
             }
             else if (companyId == 0 && audienceCount == 0) {
-                var queryStmt = "SELECT * FROM advertisementOptions";
+                var queryStmt = "SELECT * FROM advertisementOptions limit " + pageLimit + " offset " + offsetNum;
+
+                console.log(queryStmt);
 
                 conn.query(queryStmt,[],(err,result)=> {
                     if (err) {
@@ -65,12 +75,13 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                         return callback(err,null);
                     }
                     else {
-                        return callback(err,result);
+                        // return callback(err,result);
+                        return callback(null,result);
                     }
                 });
             }
-            else if (companyId != 0 && audienceCount !=0) {
-                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=? AND audienceCount=?";
+            else if (companyId != 0 && audienceCount != 0) {
+                var queryStmt = "SELECT * FROM advertisementOptions WHERE companyId=? AND audienceCount=? limit " + pageLimit + " offset " + offsetNum;
 
                 conn.query(queryStmt,[companyId, audienceCount],(err,result)=> {
                     if (err) {
@@ -78,7 +89,8 @@ advertDB.getOptions = function(companyId,audienceCount,callback) {
                         return callback(err,null);
                     }
                     else {
-                        return callback(err,result);
+                        // return callback(err,result);
+                        return callback(null,result);
                     }
                 });
             }
