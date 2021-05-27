@@ -54,7 +54,7 @@ $(function() {
 
     var data = { companyId: companyIdv, audienceCount: audienceCountv, currPage: currpage, pageLimit: pagelimit }
 
-    var URL = "http://localhost:3000/basic/data";
+    var URL = "https://demo-bed-sew-lester-chee.herokuapp.com/basic/data";
     $(() => {
         var settings = {
             "url": URL,
