@@ -34,7 +34,7 @@ advertDB.getOptions = function(companyId, audienceCount, currPage, pageLimit, ca
         }
         else {
             if (companyId == 0 && audienceCount != 0) {
-                var queryStmt = "SELECT * FROM `advertisementOptions` WHERE audienceCount=? limit " + pageLimit + " offset " + offsetNum;
+                var queryStmt = "SELECT * FROM `AdvertisementOptions` WHERE audienceCount=? limit " + pageLimit + " offset " + offsetNum;
                 // $sql = "SELECT * FROM `advertisementoptions` WHERE audienceCount=?";
 
                 conn.query(queryStmt,[audienceCount],(err,result)=> {
