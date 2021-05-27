@@ -9,6 +9,7 @@ const advertDB = require("./model");
 var app = express();
 // Use this to link up to public folder
 app.use(express.static(__dirname + '/public'));
+
 // require("./route")(app);
 // var app = require("./controller/app");
 var urlencodedParser = express.urlencoded( {extended: false} );
